@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lotto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 10px;
+            display: block;
+            margin: 0px auto;
+            border: solid black 2px; 
+            font-size: 24px;
+        }
+        div {
+            height: 50px;
+            width: 50px;
+            background-color: cornflowerblue;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            color: white;
+            float: left;
+            margin: .3rem;
+
+        }
+        body {
+            background-color: #666;
+            margin-top: 3rem;
+            
+
+        }
+        
+        .wyniki {
+            display: flex;
+            justify-content: center;
+            margin-top: 15rem;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <button>Losuj</button>
+    
+    <p class="wyniki"></p>
+    
+    <script>
+    const result = [];
+
+    const losowanie = function() {
+
+      if (result.length === 6) return;
+
+      const wynikLosowania = Math.floor(Math.random() * 49 + 1);
+
+      for (let i = 0; i < result.length; i++) {
+
+        if (wynikLosowania === result[i]) {
+
+          return losowanie()
+        }
+      }
+
+      const div = document.createElement("div");
+        
+      div.textContent = wynikLosowania;
+      
+      result.push(wynikLosowania); 
+      
+        
+      document.querySelector("p").appendChild(div);
+    }
+
+
+
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", losowanie);
+    </script>
+</body>
+</html>
